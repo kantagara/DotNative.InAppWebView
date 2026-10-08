@@ -1,0 +1,13 @@
+<Project>
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'android-arm64' or '$(RuntimeIdentifier)' == 'android-x64'">
+    <DotNativePluginEntry Include="InAppWebViewPlugin" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'ios-arm64' or '$(RuntimeIdentifier)' == 'iossimulator-arm64'">
+    <DotNativeNativeSource Include="$(MSBuildThisFileDirectory)../Platform/iOS/*.swift" />
+    <DotNativePluginEntry Include="InAppWebViewPlugin" />
+  </ItemGroup>
+  <ItemGroup Condition="$([System.String]::Copy('$(RuntimeIdentifier)').StartsWith('osx-'))">
+    <DotNativeNativeSource Include="$(MSBuildThisFileDirectory)../Platform/Mac/*.swift" />
+    <DotNativePluginEntry Include="InAppWebViewPlugin" />
+  </ItemGroup>
+</Project>
